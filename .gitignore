@@ -1,0 +1,6 @@
+# Dependencies are installed manually or using a build process, so they
+# can benefit from machine-specific compiling, etc.
+node_modules
+
+# Environment files may contain sensitive data.
+.env

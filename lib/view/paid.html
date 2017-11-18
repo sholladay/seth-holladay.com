@@ -1,0 +1,32 @@
+<style>
+    img {
+        width: 8rem;
+    }
+</style>
+
+<div id="fb-root"></div>
+<script>
+    (function () {
+        const id = 'facebook-jssdk';
+        if (document.getElementById(id)) {
+            return;
+        }
+        const first = document.querySelector('script');
+        const script = document.createElement('script');
+        script.id = id;
+        script.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=217510065444884';
+        first.parentNode.insertBefore(script, first);
+    }());
+</script>
+
+<h1>Thank You</h1>
+
+<p>Your donation was successful. You rock.</p>
+
+<p>Together we are making the world a better place through open source.</p>
+
+<img alt="Donation successful" src="http://www.iconninja.com/files/988/355/689/success-ok-done-tick-valid-right-yes-icon.svg">
+
+<h2>Tell the world about open source</h2>
+
+<div class="fb-like" data-href="https://seth-holladay.com/donate" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>

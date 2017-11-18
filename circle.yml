@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 8
+deployment:
+  dev:
+    branch: master
+    owner: sholladay
+    commands:
+      - ./deploy.sh

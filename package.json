@@ -1,0 +1,96 @@
+{
+    "name": "seth-holladay.com",
+    "version": "0.0.0",
+    "description": "Personal website of Seth Holladay",
+    "homepage": "https://github.com/sholladay/seth-holladay.com",
+    "main": "index.js",
+    "author": {
+        "name": "Seth Holladay",
+        "url": "https://seth-holladay.com",
+        "email": "me@seth-holladay.com"
+    },
+    "scripts": {
+        "start": "node cli.js",
+        "test": "xo && stylelint 'lib/**/*.css' && ava"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:sholladay/seth-holladay.com.git"
+    },
+    "bugs": {
+        "url": "https://github.com/sholladay/seth-holladay.com/issues",
+        "email": "me@seth-holladay.com"
+    },
+    "engines": {
+        "node": ">=8.3"
+    },
+    "license": "MPL-2.0",
+    "bin": "cli.js",
+    "files": [
+        "lib",
+        "index.js",
+        "cli.js",
+        ".env.example"
+    ],
+    "dependencies": {
+        "chalk": "^2.0.1",
+        "envy": "^1.0.0",
+        "handle-quit": "^0.1.1",
+        "handlebars": "^4.0.10",
+        "hapi": "^16.5.0",
+        "hapi-align-json": "^1.0.1",
+        "hapi-error-page": "^0.3.0",
+        "hapi-hi": "^0.1.0",
+        "hapi-zebra": "^0.2.0",
+        "inert": "^4.2.1",
+        "joi": "^13.0.2",
+        "lout": "^10.0.2",
+        "meow": "^3.7.0",
+        "opn": "^5.1.0",
+        "port-type": "^0.2.1",
+        "root-check": "^1.0.0",
+        "throw-rejects": "^1.0.0",
+        "vision": "^4.1.1"
+    },
+    "devDependencies": {
+        "ava": "git@github.com:avajs/ava.git#37c9122c50722b06039f1cc2306a7c176fd3c786",
+        "await-url": "^0.3.0",
+        "eslint-config-tidy": "^0.5.0",
+        "now": "^8.5.1",
+        "stylelint": "^8.0.0",
+        "stylelint-config-tidy": "^0.4.1",
+        "xo": "^0.18.0"
+    },
+    "keywords": [
+        "cli-app",
+        "cli",
+        "server",
+        "website",
+        "seth",
+        "holladay",
+        "coder",
+        "programmer",
+        "engineer",
+        "hacker",
+        "producer",
+        "writer"
+    ],
+    "stylelint": {
+        "extends": "stylelint-config-tidy"
+    },
+    "xo": {
+        "extend": "tidy",
+        "overrides": [
+            {
+                "files": "lib/view/**",
+                "env": "browser"
+            },
+            {
+                "files": "lib/route/donate/charge.js",
+                "rules": {
+                    "camelcase": "off"
+                }
+            }
+        ]
+    }
+}

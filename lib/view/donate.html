@@ -1,0 +1,73 @@
+<style>
+    input[type="text"] {
+        width        : 8em;
+        margin-left  : 0.2em;
+        margin-right : 0.2em;
+        border-radius: 0.2em;
+    }
+</style>
+
+<h1>Donate</h1>
+<h2>Make a difference in open source</h2>
+
+<p>By donating to my open source work, you do more than help me. You contribute to a movement dedicated to making the world more secure, simple, inclusive, and high quality.</p>
+
+<form id="donations" method="POST" action="/donate/send">
+    <label>USD $<input id="dollars" required type="text" placeholder="123.45"></label>
+    <input id="email" name="email" type="hidden">
+    <input id="amount" name="amount" type="hidden">
+    <input id="stripeToken" name="stripeToken" type="hidden">
+    <button id="submit" type="submit">Donate</button>
+</form>
+
+<p>Your feedback and suggestions are also welcome.</p>
+
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
+
+<script>
+    const form = document.querySelector('#donations');
+    const checkout = StripeCheckout.configure({
+        name        : 'Seth Holladay',
+        description : 'Open source donation',
+        amount      : 999,
+        locale      : 'auto',
+        panelLabel  : 'Submit',
+        bitcoin     : true,
+        image       : 'https://gravatar.com/avatar/c65c7991822f827780a2cae38c5c31a2',
+        key         : '{{ stripePublicKey }}',
+        token(token) {
+            document.querySelector('#email').value = token.email;
+            document.querySelector('#stripeToken').value = token.id;
+            form.submit();
+        }
+    });
+
+    const showError = (msg) => {
+        // TODO: Make this prettier, perhaps using form validation.
+        alert(msg);
+    };
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        const match = document.querySelector('#dollars').value.trim().match(/^\$?\.?\d.*/);
+        if (!match) {
+            showError('A number is required');
+            return;
+        }
+        const amount = Number.parseFloat(match[0].replace(/^\$/, '').replace(/,/g, '')) * 100;
+        if (Number.isNaN(amount)) {
+            showError('A valid number is required');
+            return;
+        }
+        if (amount < 100) {
+            showError('Sorry, at least $1 is required');
+            return;
+        }
+        if (amount > 10000000) {
+            showError('Contact me to send more than $100,000');
+        }
+        document.querySelector('#amount').value = amount;
+        checkout.open({
+            amount
+        });
+    });
+</script>

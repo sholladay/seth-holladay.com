@@ -82,10 +82,6 @@
         "extend": "tidy",
         "overrides": [
             {
-                "files": "lib/view/**",
-                "env": "browser"
-            },
-            {
                 "files": "lib/route/donate/charge.js",
                 "rules": {
                     "camelcase": "off"

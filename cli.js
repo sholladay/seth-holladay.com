@@ -16,7 +16,7 @@ const handleQuit = require('handle-quit');
 const envy = require('envy');
 const cli = require('meow')(`
     Usage
-      $ holladay
+      $ seth-holladay.com
 
     Option
       --port        Port number to listen on for HTTPS requests
@@ -24,15 +24,13 @@ const cli = require('meow')(`
       --open=<url>  Open a specific page in your browser
 
     Example
-      $ holladay
+      $ seth-holladay.com
       ${bold.cyan('Seth ready')} ${bold.grey('at')} ${bold.yellow('https://localhost/')}
-      $ holladay --port=7000
+      $ seth-holladay.com --port=7000
       ${bold.cyan('Seth ready')} ${bold.grey('at')} ${bold.yellow('https://localhost:7000/')}
 `);
 
 const AppServer = require('.');
-
-console.log('env:', process.env);
 
 const serverOption = {
     ...envy(path.join(__dirname, '.env')),

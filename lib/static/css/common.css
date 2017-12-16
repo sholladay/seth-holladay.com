@@ -6,6 +6,8 @@
     line-height : 1.5;
 }
 main {
+    margin-bottom : 1em;
+    margin-top : 2.5em;
     text-align : center;
 }
 nav > ul {
@@ -27,9 +29,15 @@ dt {
     font-size   : 1.4rem;
     font-weight : 700;
 }
+dd {
+    margin-bottom : 1em;
+    margin-left   : 0;  /* Undo leading margin in Firefox */
+    margin-top    : 0.5em;
+}
 
 /* Long-form content with a limited line length */
 p, dl {
+    font-size     : 0.9em;
     margin-left   : auto;
     margin-right  : auto;
     max-width     : 40em;

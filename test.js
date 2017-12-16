@@ -1,6 +1,6 @@
 import test from 'ava';
 import envy from 'envy';
-import AppServer from '.';
+import server from '.';
 
 const env = {
     ...envy(),
@@ -16,7 +16,7 @@ if (!env.stripeSecretKey.startsWith('sk_test_')) {
 }
 
 test('starts successfully', async (t) => {
-    const server = new AppServer(env);
-    await t.notThrows(server.start());
-    await server.stop();
+    const app = await server(env);
+    await t.notThrows(app.start());
+    await app.stop();
 });

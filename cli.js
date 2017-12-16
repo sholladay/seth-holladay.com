@@ -30,7 +30,7 @@ const cli = require('meow')(`
       ${bold.cyan('Seth ready')} ${bold.grey('at')} ${bold.yellow('https://localhost:7000/')}
 `);
 
-const AppServer = require('.');
+const server = require('.');
 
 const serverOption = {
     ...envy(path.join(__dirname, '.env')),
@@ -38,13 +38,13 @@ const serverOption = {
 };
 delete serverOption.open;
 
-const server = new AppServer(serverOption);
+server(serverOption).then(async (app) => {
+    handleQuit(() => {
+        app.stop();
+    });
 
-handleQuit(() => {
-    server.stop();
-});
+    await app.start();
 
-server.start().then(() => {
     // Attempt to set UID to a normal user now that we definitely
     // do not need elevated privileges.
     rootCheck();
@@ -52,11 +52,11 @@ server.start().then(() => {
     console.log(
         bold.cyan('Seth ready'),
         bold.grey('at'),
-        bold.yellow(server.info.uri)
+        bold.yellow(app.info.uri)
     );
 
     const page = cli.flags.open;
     if (page) {
-        open(server.info.uri + '/' + (page === true ? '' : page));
+        open(app.info.uri + '/' + (page === true ? '' : page));
     }
 });

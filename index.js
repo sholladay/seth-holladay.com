@@ -21,7 +21,7 @@ const routes = [
     require('./lib/route/faq'),
     require('./lib/route/contact'),
     require('./lib/route/donate'),
-    require('./lib/route/donate/charge')
+    require('./lib/route/donate/send')
 ];
 /* eslint-enable global-require */
 

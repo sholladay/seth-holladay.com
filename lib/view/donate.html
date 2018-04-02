@@ -17,7 +17,7 @@
     <input id="email" name="email" type="hidden">
     <input id="amount" name="amount" type="hidden">
     <input id="stripeToken" name="stripeToken" type="hidden">
-    <button id="submit" type="submit">Donate</button>
+    <button type="submit">Donate</button>
 </form>
 
 <p>Your feedback and suggestions are also welcome.</p>
@@ -64,6 +64,7 @@
         }
         if (amount > 10000000) {
             showError('Contact me to send more than $100,000');
+            return;
         }
         document.querySelector('#amount').value = amount;
         checkout.open({

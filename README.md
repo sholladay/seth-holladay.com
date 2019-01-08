@@ -55,7 +55,7 @@ To actually start the server and run the app, you will need credentials in order
 
 ### app = await server(option)
 
-Returns a new hapi [server](https://github.com/hapijs/hapi/blob/82f287053e12495c45746b3cffc1cb5c9f9ee81b/API.md#server() instance, configured with all of our routes, views, etc.
+Returns a new hapi [server](https://github.com/hapijs/hapi/blob/c88bda0d0fd3f269b57229e49083645fb2ddf241/API.md#server) instance, configured with all of our routes, views, etc.
 
 ### option
 

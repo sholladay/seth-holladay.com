@@ -1,14 +1,17 @@
 :root {
-    background  : hsl(262, 7%, 29%);
-    color       : hsl(0, 0%, 100%);
-    font-family : 'Lato', sans-serif;
-    font-size   : 20px;
-    line-height : 1.5;
+    background         : hsl(262, 7%, 29%);
+    color              : hsl(0, 0%, 100%);
+    font-family        : 'Lato', sans-serif;
+    font-size          : 20px;
+    line-height        : 1.5;
+}
+body {
+    display            : grid;
+    grid-template-rows : auto 1fr;
+    min-height         : 100vh;
 }
 main {
-    margin-bottom : 1em;
-    margin-top : 2.5em;
-    text-align : center;
+    text-align    : center;
 }
 nav > ul {
     display   : flex;
@@ -37,7 +40,7 @@ dd {
 
 /* Long-form content with a limited line length */
 p, dl {
-    font-size     : 0.9em;
+    font-size     : 1em;
     margin-left   : auto;
     margin-right  : auto;
     max-width     : 40em;

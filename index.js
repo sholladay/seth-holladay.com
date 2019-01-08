@@ -2,16 +2,17 @@
 
 const fs = require('fs');
 const path = require('path');
+const isHeroku = require('is-heroku');
 const portType = require('port-type');
-const joi = require('joi');
+const handlebars = require('handlebars');
 const hapi = require('hapi');
 const hi = require('hapi-hi');
-const errorPage = require('hapi-error-page');
 const alignJson = require('hapi-align-json');
+const errorPage = require('hapi-error-page');
 const zebra = require('hapi-zebra');
 const inert = require('inert');
+const joi = require('joi');
 const vision = require('vision');
-const handlebars = require('handlebars');
 
 /* eslint-disable global-require */
 const routes = [
@@ -28,12 +29,12 @@ const routes = [
 const provision = async (option) => {
     const value = joi.attempt(option, {
         port            : joi.number().positive().integer().min(0).max(65535).default(portType.haveRights(443) ? 443 : 3000),
-        stripePublicKey : joi.string().required().token().min(25).regex(/^pk_/),
-        stripeSecretKey : joi.string().required().token().min(25).regex(/^sk_/)
+        stripePublicKey : joi.string().required().token().min(25).regex(/^pk_/u),
+        stripeSecretKey : joi.string().required().token().min(25).regex(/^sk_/u)
     });
 
     const config = {
-        tls : !process.env.NOW && {
+        tls : !isHeroku && {
             /* eslint-disable no-sync */
             key  : fs.readFileSync(path.join(__dirname, 'lib', 'key', 'localhost.key')),
             cert : fs.readFileSync(path.join(__dirname, 'lib', 'cert', 'localhost-chain.cert'))
@@ -52,7 +53,7 @@ const provision = async (option) => {
                 relativeTo : path.join(__dirname, 'lib', 'static')
             }
         },
-        host   : 'localhost',
+        host   : isHeroku ? null : 'localhost',
         port   : config.port,
         tls    : config.tls
     });

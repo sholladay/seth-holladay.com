@@ -1,4 +1,4 @@
-# [seth-holladay.com](https://seth-holladay.com) [![Build status for seth-holladay.com](https://img.shields.io/circleci/project/sholladay/seth-holladay.com/master.svg "Build Status")](https://circleci.com/gh/sholladay/seth-holladay.com "Builds")
+# [seth-holladay.com](https://seth-holladay.com) [![Build status for seth-holladay.com](https://travis-ci.com/sholladay/seth-holladay.com.svg?branch=master "Build Status")](https://travis-ci.com/sholladay/seth-holladay.com "Builds")
 
 > Personal website of Seth Holladay
 
@@ -53,11 +53,13 @@ To actually start the server and run the app, you will need credentials in order
 
 ## API
 
-### new Server(option)
+### app = await server(option)
 
-Returns a new [instance](#instance).
+Returns a new hapi [server](https://github.com/hapijs/hapi/blob/82f287053e12495c45746b3cffc1cb5c9f9ee81b/API.md#server() instance, configured with all of our routes, views, etc.
 
 ### option
+
+Type: `object`
 
 #### port
 
@@ -77,29 +79,17 @@ Type: `string`
 
 Private API key for [Stripe](https://stripe.com/).
 
-### Instance
-
-#### .app
-
-Type: `object`
-
-App configuration, derived from the options passed to `new Server()`.
-
-#### .start()
-
-Returns a `Promise` for the server to be ready and listening for requests.
-
 ## Testing
 
 You can run the automated tests with `npm test`.
 
-## Continuous delivery
+## Continuous deliver
 
-All commits, including pull requests, are tested by [Circle CI](https://circleci.com/about/).
+All commits, including pull requests, are tested by [Travis CI](https://docs.travis-ci.com/user/for-beginners/).
 
-For the `master` branch only, commits are also [deployed](https://github.com/sholladay/seth-holladay.com/blob/master/deploy.sh) to [dev.seth-holladay.com](https://dev.seth-holladay.com) within a few minutes of being pushed.
+For the `master` branch only, after CI passes, commits are also [deployed](https://devcenter.heroku.com/articles/github-integration#automatic-deploys) to [seth-holladay.com](https://seth-holladay.com) within a few minutes of being pushed.
 
-See the latest CI results at: https://circleci.com/gh/sholladay/seth-holladay.com
+See the latest CI results at: https://travis-ci.com/sholladay/seth-holladay.com
 
 ## Web services
 
@@ -107,8 +97,13 @@ We rely on these third-party services to provide functionality for the applicati
 
 Provider | Description
 ---------|------------
+[Heroku](https://heroku.com) | Server hosting
 [Stripe](https://stripe.com) | Payment transactions
-[Zeit](https://zeit.co/now) | Server hosting and [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
+[Zeit](https://zeit.co/now) | Domains and [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
+
+## Related
+
+ - [hapi](https://hapijs.com) - Server framework for Node.js
 
 ## Contributing
 

@@ -22,7 +22,7 @@
         "email": "me@seth-holladay.com"
     },
     "engines": {
-        "node": ">=8.3"
+        "node": "^10.0.0"
     },
     "license": "MPL-2.0",
     "bin": "cli.js",
@@ -34,31 +34,31 @@
     ],
     "dependencies": {
         "chalk": "^2.0.1",
-        "envy": "^1.0.0",
+        "envy": "^2.0.0",
         "handle-quit": "^0.1.1",
         "handlebars": "^4.0.10",
         "hapi": "^17.1.1",
         "hapi-align-json": "^2.0.0",
-        "hapi-error-page": "^0.5.0",
+        "hapi-error-page": "^0.6.0",
         "hapi-hi": "^1.0.0",
-        "hapi-zebra": "^0.3.0",
+        "hapi-zebra": "^0.4.1",
         "inert": "^5.0.1",
-        "joi": "^13.0.2",
-        "meow": "^4.0.0",
+        "is-heroku": "^2.0.0",
+        "joi": "^14.3.1",
+        "meow": "^5.0.0",
         "opn": "^5.1.0",
         "port-type": "^0.2.1",
         "root-check": "^1.0.0",
+        "stripe": "^6.20.0",
         "throw-rejects": "^1.0.0",
         "vision": "^5.2.0"
     },
     "devDependencies": {
         "ava": "^1.0.0-beta.3",
-        "await-url": "^0.3.0",
-        "eslint-config-tidy": "^0.6.1",
-        "now": "^10.2.2",
+        "eslint-config-tidy": "^0.7.0",
         "stylelint": "^9.0.0",
-        "stylelint-config-tidy": "^0.5.0",
-        "xo": "0.20.3"
+        "stylelint-config-tidy": "^0.7.0",
+        "xo": "0.23.0"
     },
     "keywords": [
         "cli-app",

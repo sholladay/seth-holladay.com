@@ -10,7 +10,7 @@ require('throw-rejects')();
 
 const path = require('path');
 const { bold } = require('chalk');
-const open = require('opn');
+const open = require('open');
 const rootCheck = require('root-check');
 const handleQuit = require('handle-quit');
 const envy = require('envy');

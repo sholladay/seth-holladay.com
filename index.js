@@ -5,14 +5,14 @@ const path = require('path');
 const isHeroku = require('is-heroku');
 const portType = require('port-type');
 const handlebars = require('handlebars');
-const hapi = require('hapi');
+const hapi = require('@hapi/hapi');
 const hi = require('hapi-hi');
 const alignJson = require('hapi-align-json');
 const errorPage = require('hapi-error-page');
 const zebra = require('hapi-zebra');
-const inert = require('inert');
-const joi = require('joi');
-const vision = require('vision');
+const inert = require('@hapi/inert');
+const joi = require('@hapi/joi');
+const vision = require('@hapi/vision');
 
 /* eslint-disable global-require */
 const routes = [
@@ -27,11 +27,11 @@ const routes = [
 /* eslint-enable global-require */
 
 const provision = async (option) => {
-    const value = joi.attempt(option, {
-        port            : joi.number().positive().integer().min(0).max(65535).default(portType.haveRights(443) ? 443 : 3000),
+    const value = joi.attempt(option, joi.object().required().keys({
+        port            : joi.number().optional().port().default(portType.haveRights(443) ? 443 : 3000),
         stripePublicKey : joi.string().required().token().min(25).regex(/^pk_/u),
         stripeSecretKey : joi.string().required().token().min(25).regex(/^sk_/u)
-    });
+    }));
 
     const config = {
         tls : !isHeroku && {
@@ -53,9 +53,9 @@ const provision = async (option) => {
                 relativeTo : path.join(__dirname, 'lib', 'static')
             }
         },
-        host   : isHeroku ? null : 'localhost',
-        port   : config.port,
-        tls    : config.tls
+        host : isHeroku ? null : 'localhost',
+        port : config.port,
+        tls  : config.tls
     });
 
     Object.assign(server.app, config);

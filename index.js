@@ -13,6 +13,7 @@ const zebra = require('hapi-zebra');
 const inert = require('@hapi/inert');
 const joi = require('@hapi/joi');
 const vision = require('@hapi/vision');
+const schema = require('./lib/schema');
 
 /* eslint-disable global-require */
 const routes = [
@@ -22,15 +23,18 @@ const routes = [
     require('./lib/route/faq'),
     require('./lib/route/contact'),
     require('./lib/route/donate'),
-    require('./lib/route/donate/send')
+    require('./lib/route/donate/config'),
+    require('./lib/route/donate/sessions'),
+    require('./lib/route/donate/sessions/session-id'),
+    require('./lib/route/donate/success')
 ];
 /* eslint-enable global-require */
 
 const provision = async (option) => {
     const value = joi.attempt(option, joi.object().required().keys({
         port            : joi.number().optional().port().default(portType.haveRights(443) ? 443 : 3000),
-        stripePublicKey : joi.string().required().token().min(25).regex(/^pk_/u),
-        stripeSecretKey : joi.string().required().token().min(25).regex(/^sk_/u)
+        stripePublicKey : schema.stripePublicKey.required(),
+        stripeSecretKey : schema.stripeSecretKey.required()
     }));
 
     const config = {

@@ -1,9 +1,11 @@
 :root {
-    background         : hsl(262, 7%, 29%);
-    color              : hsl(0, 0%, 100%);
-    font-family        : 'Lato', sans-serif;
-    font-size          : 20px;
-    line-height        : 1.5;
+    --yellow    : hsl(56, 100%, 48%);
+    --gray      : hsl(262, 7%, 29%);
+    background  : var(--gray);
+    color       : hsl(0, 0%, 100%);
+    font-family : 'Lato', sans-serif;
+    font-size   : 20px;
+    line-height : 1.5;
 }
 body {
     display            : grid;
@@ -16,15 +18,16 @@ main {
     text-align    : center;
 }
 nav > ul {
-    display   : flex;
-    flex-wrap : wrap;
+    align-items : baseline;
+    display     : flex;
+    flex-wrap   : wrap;
 
     /* Undo user agent style in Chrome and Safari */
 
     /* padding-left: 0; */
 }
 a {
-    color           : hsl(56, 100%, 48%);
+    color           : var(--yellow);
     font-weight     : 600;
     text-decoration : none;
 }
@@ -63,17 +66,18 @@ h2, header p {
     font-weight : 400;
 }
 nav a[href='/donate'] {
-    background-color : hsl(136, 88%, 35%);
-    border-radius    : 0.2em;
-    color            : hsl(0, 0%, 100%);
-    margin-left      : 0.83em;
+    margin-left : 1em;
+    padding     : 0.5em 1em;
 }
-button {
-    background-color : hsl(210, 80%, 52%);
-    border-color     : transparent;
+button,
+.button {
+    background-color : var(--yellow);
+    border           : 0.1em solid var(--yellow);
     border-radius    : 0.2em;
-    padding-bottom   : 1px;
-    padding-top      : 1px;
+    color            : var(--gray);
+    font-weight      : 600;
+    padding-bottom   : 1px;  /* To match the padding of text inputs */
+    padding-top      : 1px;  /* To match the padding of text inputs */
 }
 
 /* Use box-shadow instead of outline, to achieve rounded corners */
@@ -85,7 +89,7 @@ button:focus, input[type='text']:focus {
 }
 li a {
     display : block;
-    padding : 0.5em 0.75em;
+    padding : 0.5em 1em;
 }
 blockquote {
     border-left    : 0.5em solid #CCC;

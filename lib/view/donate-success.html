@@ -21,12 +21,31 @@
 
 <h1>Thank You</h1>
 
-<p>Your donation was successful. You rock.</p>
+<p>I really appreciate your donation of <strong id="amount">$loading</strong> to my open source work. You rock!</p>
 
-<p>Together we are making the world a better place through open source.</p>
+<a href="/donate">Want to give more?</a>
 
-<img alt="Donation successful" src="http://www.iconninja.com/files/988/355/689/success-ok-done-tick-valid-right-yes-icon.svg">
+<p>Together we are making the world a better place through high quality software and it belongs to all of us.</p>
+
+<img alt="Donation successful" src="https://www.iconninja.com/files/988/355/689/success-ok-done-tick-valid-right-yes-icon.svg">
 
 <h2>Tell the world about open source</h2>
 
 <div class="fb-like" data-href="https://seth-holladay.com/donate" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+
+<script type="module">
+    import ky from 'https://unpkg.com/ky@0.16';
+
+    const amountElem = document.querySelector('#amount');
+
+    const params = new URLSearchParams(location.search);
+    const sessionId = params.get('sessionId');
+    (async () => {
+        const session = await ky.get('/donate/sessions/' + sessionId).json();
+        const localizedAmount = (session.paymentIntent.amount / 100).toLocaleString(undefined, {
+            currency :'USD',
+            style    : 'currency'
+        });
+        amount.innerText = localizedAmount;
+    })();
+</script>

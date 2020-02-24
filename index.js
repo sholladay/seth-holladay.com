@@ -2,17 +2,18 @@
 
 const fs = require('fs');
 const path = require('path');
-const isHeroku = require('is-heroku');
-const portType = require('port-type');
-const handlebars = require('handlebars');
 const hapi = require('@hapi/hapi');
-const hi = require('hapi-hi');
+const joi = require('@hapi/joi');
+const inert = require('@hapi/inert');
+const vision = require('@hapi/vision');
+const handlebars = require('handlebars');
 const alignJson = require('hapi-align-json');
 const errorPage = require('hapi-error-page');
+const hi = require('hapi-hi');
+const requireHttps = require('hapi-require-https');
 const zebra = require('hapi-zebra');
-const inert = require('@hapi/inert');
-const joi = require('@hapi/joi');
-const vision = require('@hapi/vision');
+const isHeroku = require('is-heroku');
+const portType = require('port-type');
 const schema = require('./lib/schema');
 
 /* eslint-disable global-require */
@@ -52,19 +53,21 @@ const provision = async (option) => {
             log     : ['error'],
             request : ['error']
         },
+        host   : isHeroku ? null : 'localhost',
+        port   : config.port,
         routes : {
             files : {
                 relativeTo : path.join(__dirname, 'lib', 'static')
-            }
+            },
+            security : true
         },
-        host : isHeroku ? null : 'localhost',
-        port : config.port,
-        tls  : config.tls
+        tls : config.tls
     });
 
     Object.assign(server.app, config);
 
     await server.register([
+        requireHttps,
         {
             plugin  : hi,
             options : {

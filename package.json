@@ -44,6 +44,7 @@
         "hapi-align-json": "^4.0.0",
         "hapi-error-page": "^2.0.0",
         "hapi-hi": "^3.0.0",
+        "hapi-require-https": "^4.0.0",
         "hapi-zebra": "^2.0.0",
         "is-heroku": "^2.0.0",
         "meow": "^6.0.0",

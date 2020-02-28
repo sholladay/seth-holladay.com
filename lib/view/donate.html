@@ -23,6 +23,7 @@
 
 <script type="module">
     import ky from 'https://unpkg.com/ky@0.16';
+    import { loadStripe } from 'https://unpkg.com/@stripe/stripe-js@1/dist/stripe.esm.js';
 
     const showError = (msg) => {
         // TODO: Make this prettier, perhaps using form validation.
@@ -43,7 +44,7 @@
 
     (async () => {
         const config = await getConfig();
-        const stripe = new Stripe(config.publicKey);
+        const stripe = await loadStripe(config.publicKey);
         const form = document.querySelector('#donations');
 
         form.addEventListener('submit', (evt) => {

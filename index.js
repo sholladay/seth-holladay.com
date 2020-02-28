@@ -49,6 +49,7 @@ const provision = async (option) => {
     };
 
     const server = hapi.server({
+        app   : config,
         debug : {
             log     : ['error'],
             request : ['error']
@@ -63,8 +64,6 @@ const provision = async (option) => {
         },
         tls : config.tls
     });
-
-    Object.assign(server.app, config);
 
     await server.register([
         requireHttps,

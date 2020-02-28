@@ -76,7 +76,8 @@ const provision = async (option) => {
         {
             plugin  : zebra,
             options : {
-                secretKey : config.stripeSecretKey
+                apiVersion : '2019-12-03',
+                secretKey  : config.stripeSecretKey
             }
         },
         inert,

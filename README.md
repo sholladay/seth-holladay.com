@@ -1,4 +1,4 @@
-# [seth-holladay.com](https://seth-holladay.com) [![Build status for seth-holladay.com](https://travis-ci.com/sholladay/seth-holladay.com.svg?branch=master "Build Status")](https://travis-ci.com/sholladay/seth-holladay.com "Builds")
+# [seth-holladay.com](https://seth-holladay.com) [![Build status for seth-holladay.com](https://travis-ci.com/sholladay/seth-holladay.com.svg?branch=master "Build Status")](https://app.travis-ci.com/sholladay/seth-holladay.com "Builds")
 
 > Personal website of Seth Holladay
 
@@ -10,7 +10,7 @@
  - [API](#api)
  - [Testing](#testing)
  - [Continuous delivery](#continuous-delivery)
- - [Web services](#web-services)
+ - [Tech stack](#tech-stack)
  - [Contributing](#contributing)
  - [License](#license)
 
@@ -83,27 +83,35 @@ Private API key for [Stripe](https://stripe.com/).
 
 You can run the automated tests with `npm test`.
 
-## Continuous deliver
+## Continuous delivery
 
 All commits, including pull requests, are tested by [Travis CI](https://docs.travis-ci.com/user/for-beginners/).
 
 For the `master` branch only, after CI passes, commits are also [deployed](https://devcenter.heroku.com/articles/github-integration#automatic-deploys) to [seth-holladay.com](https://seth-holladay.com) within a few minutes of being pushed.
 
-See the latest CI results at: https://travis-ci.com/sholladay/seth-holladay.com
+See the latest CI results at: https://app.travis-ci.com/sholladay/seth-holladay.com
 
-## Web services
+## Tech stack
 
-We rely on these third-party services to provide functionality for the application and its infrastructure.
+We rely on these external products and services to provide infrastructure and functionality for the application.
 
-Provider | Description
----------|------------
-[Heroku](https://heroku.com) | Server hosting
-[Stripe](https://stripe.com) | Payment transactions
-[Zeit](https://zeit.co/now) | Domains and [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
+### Production services
 
-## Related
+| Service | Description |
+| ------- | ----------- |
+| [Cloudflare](https://cloudflare.com) | Domains and [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) |
+| [Heroku](https://heroku.com) | Server hosting |
+| [Stripe](https://stripe.com) | Payment transactions |
 
- - [hapi](https://hapijs.com) - Server framework for Node.js
+### Other systems
+
+| Provider | Description |
+| -------- | ----------- |
+| [Node](https://nodejs.org) | Language runtime |
+| [hapi](https://hapi.dev) | Server framework |
+| [Travis CI](https://travis-ci.com) | Continuous integration |
+
+See also the dependencies in [package.json](package.json).
 
 ## Contributing
 

@@ -35,7 +35,6 @@
     "dependencies": {
         "@hapi/hapi": "^21.3.2",
         "@hapi/inert": "^6.0.1",
-        "@hapi/joi": "^17.1.0",
         "@hapi/vision": "^6.0.0",
         "chalk": "^3.0.0",
         "envy": "^2.0.0",
@@ -47,6 +46,7 @@
         "hapi-require-https": "^4.0.0",
         "hapi-zebra": "^2.0.0",
         "is-heroku": "^2.0.0",
+        "joi": "^17.6.2",
         "meow": "^6.0.0",
         "open": "^7.0.0",
         "port-type": "^0.2.1",

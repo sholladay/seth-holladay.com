@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const hapi = require('@hapi/hapi');
-const joi = require('@hapi/joi');
 const inert = require('@hapi/inert');
 const vision = require('@hapi/vision');
 const handlebars = require('handlebars');
@@ -13,6 +12,7 @@ const hi = require('hapi-hi');
 const requireHttps = require('hapi-require-https');
 const zebra = require('hapi-zebra');
 const isHeroku = require('is-heroku');
+const joi = require('joi');
 const portType = require('port-type');
 const schema = require('./lib/schema');
 

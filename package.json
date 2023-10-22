@@ -33,7 +33,7 @@
         ".env.example"
     ],
     "dependencies": {
-        "@hapi/hapi": "^19.0.5",
+        "@hapi/hapi": "^21.3.2",
         "@hapi/inert": "^6.0.1",
         "@hapi/joi": "^17.1.0",
         "@hapi/vision": "^6.0.0",

@@ -25,8 +25,8 @@ const provision = async (option) => {
 
     const config = {
         tls : !isHeroku && {
-            key  : await fs.readFile(path.join(import.meta.dirname, 'lib', 'key', 'localhost.key')),
-            cert : await fs.readFile(path.join(import.meta.dirname, 'lib', 'cert', 'localhost-chain.cert'))
+            key  : await fs.readFile(path.join(import.meta.dirname, 'lib', 'tls', 'localhost.key')),
+            cert : await fs.readFile(path.join(import.meta.dirname, 'lib', 'tls', 'localhost-chain.cert'))
         },
         ...value
     };
@@ -75,9 +75,9 @@ const provision = async (option) => {
             html : handlebars
         },
         context    : { ...context },
-        relativeTo : path.join(import.meta.dirname, 'lib', 'view'),
-        path       : 'page',
-        layoutPath : 'layout',
+        relativeTo : path.join(import.meta.dirname, 'lib', 'views'),
+        path       : 'pages',
+        layoutPath : 'layouts',
         // Name of the default layout file. Can be overriden in routes.
         layout     : 'main-layout'
     });

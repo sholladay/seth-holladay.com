@@ -5,7 +5,6 @@
 
 // Fail fast if a rejected promise is not caught.
 import path from 'node:path';
-import 'throw-rejects/register.js';
 import chalk from 'chalk';
 import envy from 'envy';
 import handleQuit from 'handle-quit';

@@ -52,8 +52,7 @@
         "open": "^10.1.0",
         "port-type": "^0.2.1",
         "root-check": "^2.0.0",
-        "stripe": "^8.7.0",
-        "throw-rejects": "^1.0.0"
+        "stripe": "^8.7.0"
     },
     "devDependencies": {
         "ava": "^6.1.3",

@@ -1,6 +1,6 @@
 import test from 'ava';
 import envy from 'envy';
-import server from '.';
+import server from './index.js';
 
 const env = {
     ...envy(),

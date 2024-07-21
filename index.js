@@ -1,35 +1,20 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const hapi = require('@hapi/hapi');
-const inert = require('@hapi/inert');
-const vision = require('@hapi/vision');
-const handlebars = require('handlebars');
-const alignJson = require('hapi-align-json');
-const errorPage = require('hapi-error-page');
-const hi = require('hapi-hi');
-const requireHttps = require('hapi-require-https');
-const zebra = require('hapi-zebra');
-const isHeroku = require('is-heroku');
-const joi = require('joi');
-const portType = require('port-type');
-const schema = require('./lib/schema');
-
-/* eslint-disable global-require */
-const routes = [
-    require('./lib/route/static'),
-    require('./lib/route/home'),
-    require('./lib/route/about'),
-    require('./lib/route/faq'),
-    require('./lib/route/contact'),
-    require('./lib/route/donate'),
-    require('./lib/route/donate/config'),
-    require('./lib/route/donate/sessions'),
-    require('./lib/route/donate/sessions/session-id'),
-    require('./lib/route/donate/success')
-];
-/* eslint-enable global-require */
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import hapi from '@hapi/hapi';
+import inert from '@hapi/inert';
+import vision from '@hapi/vision';
+import handlebars from 'handlebars';
+import alignJson from 'hapi-align-json';
+import errorPage from 'hapi-error-page';
+import hi from 'hapi-hi';
+import requireHttps from 'hapi-require-https';
+import zebra from 'hapi-zebra';
+import isHeroku from 'is-heroku';
+import joi from 'joi';
+import portType from 'port-type';
+import * as context from './lib/context.js';
+import routes from './lib/routes.js';
+import schema from './lib/schema.js';
 
 const provision = async (option) => {
     const value = joi.attempt(option, joi.object().required().keys({
@@ -40,10 +25,8 @@ const provision = async (option) => {
 
     const config = {
         tls : !isHeroku && {
-            /* eslint-disable no-sync */
-            key  : fs.readFileSync(path.join(__dirname, 'lib', 'key', 'localhost.key')),
-            cert : fs.readFileSync(path.join(__dirname, 'lib', 'cert', 'localhost-chain.cert'))
-            /* eslint-enable no-sync */
+            key  : await fs.readFile(path.join(import.meta.dirname, 'lib', 'key', 'localhost.key')),
+            cert : await fs.readFile(path.join(import.meta.dirname, 'lib', 'cert', 'localhost-chain.cert'))
         },
         ...value
     };
@@ -58,7 +41,7 @@ const provision = async (option) => {
         port   : config.port,
         routes : {
             files : {
-                relativeTo : path.join(__dirname, 'lib', 'static')
+                relativeTo : path.join(import.meta.dirname, 'lib', 'static')
             },
             security : true
         },
@@ -70,7 +53,7 @@ const provision = async (option) => {
         {
             plugin  : hi,
             options : {
-                cwd : __dirname
+                cwd : import.meta.dirname
             }
         },
         {
@@ -91,14 +74,12 @@ const provision = async (option) => {
         engines : {
             html : handlebars
         },
-        relativeTo   : path.join(__dirname, 'lib', 'view'),
-        // Directories for views, helpers, partials, and layouts.
-        path         : '.',
-        helpersPath  : 'helper',
-        partialsPath : 'partial',
-        layoutPath   : 'layout',
+        context    : { ...context },
+        relativeTo : path.join(import.meta.dirname, 'lib', 'view'),
+        path       : 'page',
+        layoutPath : 'layout',
         // Name of the default layout file. Can be overriden in routes.
-        layout       : 'default-layout'
+        layout     : 'main-layout'
     });
 
     server.route(routes);
@@ -106,4 +87,4 @@ const provision = async (option) => {
     return server;
 };
 
-module.exports = provision;
+export default provision;
